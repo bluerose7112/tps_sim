@@ -30,13 +30,14 @@ const fmtTps = (v) => (v >= 100 ? v.toFixed(0) : v.toFixed(1));
 
 function render() {
   const input = readInput();
+  if (raf === null) $('status').textContent = '대기 중';
   const errors = validate(input);
   for (const id of NUM_FIELDS) {
     $(`err-${id}`).textContent = errors[id] || '';
     $(id).classList.toggle('invalid', Boolean(errors[id]));
   }
   const valid = Object.keys(errors).length === 0;
-  $('runBtn').disabled = !valid;
+  $('runBtn').disabled = !valid || raf !== null;
   if (!valid) {
     stop('입력 오류를 수정하세요');
     for (const id of ['ttft', 'tpsUser', 'tpsTotal', 'vramText']) $(id).textContent = '-';
@@ -102,7 +103,7 @@ function run() {
       stream.textContent = tokens.slice(-MAX_SHOWN_TOKENS).join(' ');
       stream.scrollTop = stream.scrollHeight;
       const live = emitted / Math.max((virtual - r.ttftMs) / 1000, 1e-6);
-      $('status').textContent = `생성 중 ${emitted} / ${input.outputTokens} 토큰 · 실측 ${fmtTps(live)} tok/s`;
+      $('status').textContent = `생성 중 ${emitted} / ${input.outputTokens} 토큰 · 환산 ${fmtTps(live)} tok/s`;
     }
     if (emitted < input.outputTokens) {
       raf = requestAnimationFrame(frame);
