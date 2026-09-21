@@ -10,6 +10,7 @@ const GIB = 2 ** 30;
 export const GPU_PRESETS = [
   { id: 'rtx3090', name: 'RTX 3090 (24GB)', vramGB: 24, bandwidthGBs: 936, tflops: 71 },
   { id: 'rtx4090', name: 'RTX 4090 (24GB)', vramGB: 24, bandwidthGBs: 1008, tflops: 165 },
+  { id: 'rtx5060ti', name: 'RTX 5060 Ti (16GB)', vramGB: 16, bandwidthGBs: 448, tflops: 47 },
   { id: 'rtx5090', name: 'RTX 5090 (32GB)', vramGB: 32, bandwidthGBs: 1792, tflops: 209 },
   { id: 'l40s', name: 'L40S (48GB)', vramGB: 48, bandwidthGBs: 864, tflops: 362 },
   { id: 'a100', name: 'A100 (80GB)', vramGB: 80, bandwidthGBs: 2039, tflops: 312 },
