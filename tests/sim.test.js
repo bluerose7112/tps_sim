@@ -107,3 +107,11 @@ test('프리셋: 마지막 항목은 custom, 나머지는 수치가 유효', () 
     assert.ok(m.paramsB > 0 && m.layers > 0 && m.kvHeads > 0 && m.headDim > 0, m.id);
   }
 });
+
+test('MoE: activeParamsB가 있으면 decode 속도는 활성 파라미터 기준, VRAM은 전체 기준', () => {
+  const base = { vramGB: 80, gpuCount: 1, bandwidthGBs: 1000, tflops: 100, paramsB: 100, bits: 8,
+    promptTokens: 100, outputTokens: 10, batch: 1 };
+  const moe = { ...base, activeParamsB: 10 };
+  assert.ok(tokenIntervalMs(moe, 0) < tokenIntervalMs(base, 0) / 5);
+  assert.equal(vramUsage(moe).weights, vramUsage(base).weights);
+});

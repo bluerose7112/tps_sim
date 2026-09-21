@@ -21,6 +21,7 @@ function readInput() {
     input.layers = model.layers;
     input.kvHeads = model.kvHeads;
     input.headDim = model.headDim;
+    if (model.activeParamsB) input.activeParamsB = model.activeParamsB;
   }
   return input;
 }
