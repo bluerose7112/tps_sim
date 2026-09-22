@@ -91,6 +91,12 @@ export const MODEL_PRESETS = [
   { id: 'qwen3-235b-a22b', name: 'Qwen3 235B-A22B (MoE, 활성 22B)', paramsB: 235, activeParamsB: 22, layers: 94, kvHeads: 4, headDim: 128 },
   { id: 'llama4-maverick', name: 'Llama 4 Maverick (MoE, 활성 17B)', paramsB: 400, activeParamsB: 17, layers: 48, kvHeads: 8, headDim: 128 },
   { id: 'deepseek-v3', name: 'DeepSeek V3 / R1 (MoE, 활성 37B)', paramsB: 671, activeParamsB: 37, layers: 61, kvHeads: 1, headDim: 288 },
+  { id: 'gemma4-12b', name: 'Gemma 4 12B', paramsB: 12, layers: 48, kvHeads: 8, headDim: 256 },
+  { id: 'gemma4-31b', name: 'Gemma 4 31B', paramsB: 31, layers: 64, kvHeads: 4, headDim: 256 },
+  { id: 'gemma4-26b-a4b', name: 'Gemma 4 26B-A4B (MoE, 활성 4B)', paramsB: 26, activeParamsB: 4, layers: 30, kvHeads: 4, headDim: 256 },
+  { id: 'glm53-flash', name: 'GLM-5.3-Flash (MoE, 활성 18B)', paramsB: 320, activeParamsB: 18, layers: 45, kvHeads: 64, headDim: 64 },
+  { id: 'glm53', name: 'GLM-5.3 (MoE, 활성 40B)', paramsB: 745, activeParamsB: 40, layers: 78, kvHeads: 64, headDim: 64 },
+  { id: 'kimi-k3', name: 'Kimi K3 (MoE, 활성 104B, MLA 근사)', paramsB: 2800, activeParamsB: 104, layers: 93, kvHeads: 1, headDim: 512 },
   { id: 'custom', name: '직접 입력', paramsB: null, layers: null, kvHeads: null, headDim: null },
 ];
 
