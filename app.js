@@ -8,8 +8,16 @@ const MAX_SHOWN_TOKENS = 400;
 
 let raf = null;
 
-function fillSelect(sel, items) {
-  sel.innerHTML = items.map((i) => `<option value="${i.id}">${i.name}</option>`).join('');
+function fillSelect(sel, items, label = (i) => i.name) {
+  sel.innerHTML = items.map((i) => `<option value="${i.id}">${label(i)}</option>`).join('');
+}
+
+// 원본(FP16, 2바이트/파라미터) 가중치 용량 근사치. 실제 배포 파일은 양자화·메타데이터에 따라 다를 수 있음.
+function modelSizeLabel(m) {
+  if (!(m.paramsB > 0)) return m.name;
+  const gb = m.paramsB * 2;
+  const size = gb >= 1000 ? `${(gb / 1000).toFixed(1)} TB` : `${gb.toFixed(gb < 10 ? 1 : 0)} GB`;
+  return `${m.name} · 원본(FP16) ~${size}`;
 }
 
 function readInput() {
@@ -133,7 +141,7 @@ function applyModelPreset() {
 }
 
 fillSelect($('gpuPreset'), GPU_PRESETS);
-fillSelect($('modelPreset'), MODEL_PRESETS);
+fillSelect($('modelPreset'), MODEL_PRESETS, modelSizeLabel);
 $('gpuPreset').value = 'rtx4090';
 $('modelPreset').value = 'llama31-8b';
 applyGpuPreset();
